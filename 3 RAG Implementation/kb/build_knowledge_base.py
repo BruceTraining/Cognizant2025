@@ -13,9 +13,7 @@ DOCUMENTS_PATH = "documents/policies"
 CHROMA_PATH = "data/chroma_db"
 
 def build_knowledge_base():
-    """
-    Load documents, split them into chunks, and store in Chroma vector database.
-    """
+    """Load documents, chunk them, and store in Chroma."""
     print("Step 1: Loading documents...")
     
     # Load all PDF files from the documents directory
@@ -54,7 +52,8 @@ def build_knowledge_base():
         persist_directory=CHROMA_PATH
     )
     
-    print(f"\nSuccess! Vector database created with {vectordb._collection.count()} vectors")
+    vector_count = vectordb._collection.count()
+    print(f"\nSuccess! Created database with {vector_count} vectors")
     print(f"Database location: {CHROMA_PATH}")
     
     return vectordb
